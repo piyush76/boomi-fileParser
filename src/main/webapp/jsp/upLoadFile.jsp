@@ -1,13 +1,36 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@ taglib uri="http://jakarta.apache.org/struts/tags-html" prefix="html"%>
-<%@ page language="java"%>
+<%@taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
 
 <html>
-<head>
-<title>Boomi File Parsing Assignment</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="STYLESHEET" type="text/css" href="css/css.css">
-<link rel="STYLESHEET" type="text/css" href="css/css_002.css">
-</head>
+    <head>
+      </head>
+    <body>
 
+    <h1><bean:message key="label.common.title" /></h1>
+
+    <html:messages id="err_name" property="common.file.err">
+      <div style="color:red">
+      	<bean:write name="err_name" />
+      </div>
+    </html:messages>
+
+<html:messages id="err_name" property="common.file.err.ext">
+<div style="color:red">
+	<bean:write name="err_name" />
+</div>
+</html:messages>
+
+<html:form action="/submitFile" method="post" enctype="multipart/form-data">
+<br />
+	<bean:message key="label.common.file.label" /> : <html:file property="file" size="50" />
+<br />
+<br />
+<html:submit>
+	<bean:message key="label.common.button.submit" />
+</html:submit>
+
+</html:form>
+
+
+</body>
+</html>
