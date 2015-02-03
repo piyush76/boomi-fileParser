@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+    <!-- Data Sources -->
+    <data-sources>
+    </data-sources>
+
+    <!-- Form Beans -->
+    <form-beans>
+        <form-bean name="performanceForm" type="org.apache.struts.action.ActionForm">
+            <form-property name="productName" type="java.lang.String"></form-property>
+        </form-bean>
+    </form-beans>
+
+    <!-- Global Exceptions -->
+    <global-exceptions>
+        <exception key="" type=""></exception>
+    </global-exceptions>
+
+    <!-- Global Forwards -->
+    <global-forwards> </global-forwards>
+
+    <!-- Action Mappings -->
+
+    <action-mappings>
+        <action path="/home" type="com.dell.boomi.FileUploadAction">
+            <forward name="success" path="/jsp/uploadFile.jsp" />
+            <forward name="invalid" path="/jsp/error.jsp" />
+        </action>
+        <action path="/submit" type="com.dell.boomi.ShowFileUploadAction">
+            <forward name="success" path="/jsp/show_file_viewer.jsp" />
+            <forward name="invalid" path="/jsp/error.jsp" />
+        </action>
+    </action-mappings>
+</struts-config>
