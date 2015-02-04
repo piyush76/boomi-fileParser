@@ -1,29 +1,33 @@
 package com.dell.boomi.dto;
 
-import java.util.Date;
-
 /**
  * Created by piyush_g on 2/3/2015.
  */
 public class ParsedFileValueObject {
 
-    private Date parsedDateWithTimeZone;
-    private long amountInDollers;
+    private String parsedDateWithTimeZone;
+    private String amountInDollers;
     private String description;
 
-    public Date getParsedDateWithTimeZone() {
+    public ParsedFileValueObject(String parsedDateWithTimeZone, String description, String amountInDollers) {
+        this.parsedDateWithTimeZone = parsedDateWithTimeZone;
+        this.description = description;
+        this.amountInDollers = amountInDollers;
+    }
+
+    public String getParsedDateWithTimeZone() {
         return parsedDateWithTimeZone;
     }
 
-    public void setParsedDateWithTimeZone(Date parsedDateWithTimeZone) {
+    public void setParsedDateWithTimeZone(String parsedDateWithTimeZone) {
         this.parsedDateWithTimeZone = parsedDateWithTimeZone;
     }
 
-    public long getAmountInDollers() {
+    public String getAmountInDollers() {
         return amountInDollers;
     }
 
-    public void setAmountInDollers(long amountInDollers) {
+    public void setAmountInDollers(String amountInDollers) {
         this.amountInDollers = amountInDollers;
     }
 

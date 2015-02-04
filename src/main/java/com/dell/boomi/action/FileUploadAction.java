@@ -19,20 +19,33 @@ import java.util.List;
  */
 public class FileUploadAction extends Action {
 
+
     public static List<ParsedFileValueObject> parseUploadFile(FormFile file) {
-        List parsedDatalist = new ArrayList();
-        String line = null;
+        List<ParsedFileValueObject> list = new ArrayList();
+        String line;
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
-            while (br.ready()) {
-                if (line != null && !line.equals(""))
-                    parsedDatalist.add(line.trim());
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+                String[] splitStr = line.split(",");
+                list.add(new ParsedFileValueObject(splitStr[0], splitStr[2], splitStr[3]));
             }
             br.close();
         } catch (IOException ioe) {
 
         }
-        return parsedDatalist;
+        return list;
+    }
+
+    private static void populateValueObject(List<String> list) {
+        ParsedFileValueObject valueObject = null;
+
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i);
+        }
+
+
+
     }
 
     @Override
