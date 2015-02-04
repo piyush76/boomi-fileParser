@@ -39,10 +39,10 @@ public class FileUploadAction extends Action {
 
         String fileName = file.getFileName();
 
-        System.out.println("Printing File name for parsing ...." + fileName);
+        //System.out.println("Printing File name for parsing ...." + fileName);
         if (!("").equals(fileName)) {
 
-            System.out.println("Server path:" + filePath);
+            //System.out.println("Server path:" + filePath);
             File newFile = new File(filePath, fileName);
 
             if (!newFile.exists()) {
@@ -53,9 +53,9 @@ public class FileUploadAction extends Action {
             }
 
             List<ParsedFileValueObject> dataList = parseUploadFile(file);
-            System.out.println("Final Size of data list ---- " + dataList.size());
+
             request.setAttribute("uploadedFilePath", newFile.getAbsoluteFile());
-            request.setAttribute("uploadedFileName", newFile.getName());
+            request.setAttribute("datalist", dataList);
 
         }
 
@@ -69,15 +69,12 @@ public class FileUploadAction extends Action {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
                 String[] splitStr = line.split(",");
-                //System.out.println("Date : ---------- " + splitStr[0]);
-                //System.out.println("Description: ++++++++++++  " + splitStr[2]);
-                //System.out.println("amount : $$$$$$$$ " + splitStr[3]);
-                list.add(new ParsedFileValueObject(parseDateFormat(splitStr[0]), splitStr[2], parseAmountFormat(splitStr[3])));
+                BigDecimal amt = parseAmountFormat(splitStr[3]);
+                System.out.println("Formatted Amount -----" + "$" + amt);
+                list.add(new ParsedFileValueObject(parseDateFormat(splitStr[0]), splitStr[2], amt));
             }
             br.close();
-            System.out.println(list.size());
         } catch (IOException ioe) {
 
         }
@@ -103,7 +100,7 @@ public class FileUploadAction extends Action {
     private static BigDecimal parseAmountFormat(String amount) {
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
         BigDecimal amt = new BigDecimal(amount);
-        System.out.println(df.format(amt));
+        //System.out.println(df.format(amt));
         return amt;
 
 
