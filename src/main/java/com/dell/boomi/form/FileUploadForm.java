@@ -1,16 +1,16 @@
-package com.dell.boomi;
+package com.dell.boomi.form;
 
 /**
  * Created by piyush_g on 2/3/2015.
  */
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.upload.FormFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class FileUploadForm extends ActionForm {
 

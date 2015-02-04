@@ -7,7 +7,7 @@
 
     <!-- Form Beans -->
     <form-beans>
-        <form-bean name="uploadForm" type="com.dell.boomi.FileUploadForm">
+        <form-bean name="uploadForm" type="com.dell.boomi.form.FileUploadForm">
             <form-property name="productName" type="java.lang.String"></form-property>
         </form-bean>
     </form-beans>
@@ -23,13 +23,14 @@
     <!-- Action Mappings -->
 
     <action-mappings>
+
         <action	path="/uploadFile"  type="org.apache.struts.actions.ForwardAction" parameter="/jsp/uploadFile.jsp"/>
 
-        <action path="/submit" type="com.dell.boomi.FileUploadAction" name="uploadForm" validate="true" input="/jsp/uploadFile.jsp">
+        <action path="/submitFile" type="com.dell.boomi.action.FileUploadAction" name="uploadForm" validate="true" input="/jsp/uploadFile.jsp">
             <forward name="success" path="/jsp/show_file_viewer.jsp" />
-            <forward name="invalid" path="/jsp/error.jsp" />
         </action>
     </action-mappings>
+
     <message-resources  parameter="common" />
 
 </struts-config>
