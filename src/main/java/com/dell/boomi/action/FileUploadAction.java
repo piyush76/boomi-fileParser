@@ -66,13 +66,14 @@ public class FileUploadAction extends Action {
     public static List<ParsedFileValueObject> parseUploadFile(FormFile file) {
         List<ParsedFileValueObject> list = new ArrayList<ParsedFileValueObject>();
         String line;
+
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
             while ((line = br.readLine()) != null) {
                 String[] splitStr = line.split(",");
-                BigDecimal amt = parseAmountFormat(splitStr[3]);
-                System.out.println("Formatted Amount -----" + "$" + amt);
-                list.add(new ParsedFileValueObject(parseDateFormat(splitStr[0]), splitStr[2], amt));
+                parseAmountFormat(splitStr[3]);
+                System.out.println("Formatted Amount -----" + "$" + parseAmountFormat(splitStr[3]));
+                list.add(new ParsedFileValueObject(parseDateFormat(splitStr[0]), splitStr[2], parseAmountFormat(splitStr[3])));
             }
             br.close();
         } catch (IOException ioe) {
@@ -81,7 +82,6 @@ public class FileUploadAction extends Action {
         return list;
     }
 
-
     private static String parseDateFormat(String str) {
         DateFormat parser = new SimpleDateFormat("MM/dd/yyyy'T'HH:mm:ss'Z'");
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm aaa");
@@ -89,7 +89,7 @@ public class FileUploadAction extends Action {
         try {
             Date convertedDate = parser.parse(str);
             formatedDate = formatter.format(convertedDate);
-            //System.out.println(formatedDate);
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -97,12 +97,10 @@ public class FileUploadAction extends Action {
         return formatedDate;
     }
 
-    private static BigDecimal parseAmountFormat(String amount) {
+    private static String parseAmountFormat(String amount) {
         DecimalFormat df = new DecimalFormat("#,###,##0.00");
         BigDecimal amt = new BigDecimal(amount);
-        //System.out.println(df.format(amt));
-        return amt;
-
+        return df.format(amt);
 
     }
 

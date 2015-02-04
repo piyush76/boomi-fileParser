@@ -1,7 +1,6 @@
 package com.dell.boomi.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * Created by piyush_g on 2/3/2015.
@@ -9,12 +8,11 @@ import java.math.BigDecimal;
 public class ParsedFileValueObject implements Serializable {
 
     private String parsedDateWithTimeZone;
-
-
-    private BigDecimal amountInDollers;
+    private String amountInDollers;
     private String description;
 
-    public ParsedFileValueObject(String parsedDateWithTimeZone, String description, BigDecimal amountInDollers) {
+
+    public ParsedFileValueObject(String parsedDateWithTimeZone, String description, String amountInDollers) {
         this.parsedDateWithTimeZone = parsedDateWithTimeZone;
         this.description = description;
         this.amountInDollers = amountInDollers;
@@ -28,11 +26,11 @@ public class ParsedFileValueObject implements Serializable {
         this.parsedDateWithTimeZone = parsedDateWithTimeZone;
     }
 
-    public BigDecimal getAmountInDollers() {
+    public String getAmountInDollers() {
         return amountInDollers;
     }
 
-    public void setAmountInDollers(BigDecimal amountInDollers) {
+    public void setAmountInDollers(String amountInDollers) {
         this.amountInDollers = amountInDollers;
     }
 
