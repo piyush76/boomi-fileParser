@@ -20,34 +20,6 @@ import java.util.List;
 public class FileUploadAction extends Action {
 
 
-    public static List<ParsedFileValueObject> parseUploadFile(FormFile file) {
-        List<ParsedFileValueObject> list = new ArrayList();
-        String line;
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-                String[] splitStr = line.split(",");
-                list.add(new ParsedFileValueObject(splitStr[0], splitStr[2], splitStr[3]));
-            }
-            br.close();
-        } catch (IOException ioe) {
-
-        }
-        return list;
-    }
-
-    private static void populateValueObject(List<String> list) {
-        ParsedFileValueObject valueObject = null;
-
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i);
-        }
-
-
-
-    }
-
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         FileUploadForm fileUploadForm = (FileUploadForm) form;
@@ -80,6 +52,34 @@ public class FileUploadAction extends Action {
         }
 
         return mapping.findForward("success");
+    }
+
+
+    public static List<ParsedFileValueObject> parseUploadFile(FormFile file) {
+        List<ParsedFileValueObject> list = new ArrayList();
+        String line;
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()));
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+                String[] splitStr = line.split(",");
+                list.add(new ParsedFileValueObject(splitStr[0], splitStr[2], splitStr[3]));
+            }
+            br.close();
+        } catch (IOException ioe) {
+
+        }
+        return list;
+    }
+
+    private static void populateValueObject(List<String> list) {
+        ParsedFileValueObject valueObject = null;
+
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i);
+        }
+
+
     }
 
 }
